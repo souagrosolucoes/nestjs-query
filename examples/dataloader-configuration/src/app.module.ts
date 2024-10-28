@@ -9,7 +9,6 @@ import { SubTaskModule } from '../src/sub-task/sub-task.module'
 import { TagModule } from '../src/tag/tag.module'
 import { TodoItemModule } from '../src/todo-item/todo-item.module'
 import { batchScheduleFn } from './batch-schedule-fn'
-import { JsonTaskModule } from './json-task/json-task.module'
 
 @Module({
   imports: [
@@ -29,8 +28,8 @@ import { JsonTaskModule } from './json-task/json-task.module'
 
     SubTaskModule,
     TodoItemModule,
-    TagModule,
-    JsonTaskModule
+    TagModule
+    // JsonTaskModule
   ]
 })
 export class AppModule {}
