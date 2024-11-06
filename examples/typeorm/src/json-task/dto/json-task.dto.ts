@@ -1,5 +1,5 @@
 import { ID, ObjectType } from '@nestjs/graphql'
-import { FilterableField, KeySet, QueryOptions } from '@ptc-org/nestjs-query-graphql'
+import { FilterableField, KeySet, QueryOptions } from '@souagrosolucoes/nestjs-query-graphql'
 import { GraphQLObjectType } from 'graphql'
 import { GraphQLJSONObject } from 'graphql-type-json'
 

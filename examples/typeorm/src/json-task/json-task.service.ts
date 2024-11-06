@@ -1,5 +1,5 @@
-import { InjectQueryService, NoOpQueryService, Query, QueryOptions, QueryService } from '@ptc-org/nestjs-query-core'
-import { TypeOrmQueryService } from '@ptc-org/nestjs-query-typeorm'
+import { InjectQueryService, NoOpQueryService, Query, QueryOptions, QueryService } from '@souagrosolucoes/nestjs-query-core'
+import { TypeOrmQueryService } from '@souagrosolucoes/nestjs-query-typeorm'
 import { Repository } from 'typeorm'
 
 import { JsonTaskDto } from './dto/json-task.dto'
