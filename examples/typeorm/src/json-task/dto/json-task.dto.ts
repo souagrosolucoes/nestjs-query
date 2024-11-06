@@ -17,7 +17,7 @@ export class JsonTaskDto {
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   @FilterableField(() => GraphQLJSONObject, { nullable: true })
-  display?: object
+  display?: JSON
 
   @FilterableField({ nullable: true })
   createdBy?: string

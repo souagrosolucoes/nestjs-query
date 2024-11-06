@@ -15,7 +15,7 @@ export class JsonTaskEntity {
   description?: string
 
   @Column({ type: 'jsonb', nullable: true })
-  display: object
+  display: JSON
 
   @Column({ nullable: true })
   createdBy?: string

@@ -241,7 +241,7 @@ type BuiltInTypes = boolean | string | number | Date | RegExp | bigint | symbol 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type FilterFieldComparisonType<FieldType, IsKeys extends true | false> = FieldType extends string
   ? StringFieldComparisons
-  : FieldType extends object
+  : FieldType extends JSON
     ? JSONbFieldComparisons // eslint-disable-next-line @typescript-eslint/ban-types
     : FieldType extends boolean | Boolean
       ? BooleanFieldComparisons
