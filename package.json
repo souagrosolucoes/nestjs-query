@@ -1,10 +1,7 @@
 {
   "name": "nestjs-query",
   "version": "7.3.0",
-<<<<<<< Updated upstream
   "private": true,
-=======
->>>>>>> Stashed changes
   "workspaces": [
     "packages/**"
   ],

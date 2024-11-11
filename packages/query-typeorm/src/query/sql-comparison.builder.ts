@@ -225,42 +225,42 @@ export class SQLComparisonBuilder<Entity> {
   }
 
   private JsonContainsComparisonSQL<F extends keyof Entity>(col: string, val: EntityComparisonField<Entity, F>): CmpSQLType {
-    const { paramName } = this
+    const { paramName: jsonContains } = this
     return {
-      sql: `${col} @> :${paramName}`,
-      params: { [paramName]: val }
+      sql: `${col} @> ${JSON.stringify(jsonContains)}:jsonb`,
+      params: { [jsonContains]: val }
     }
   }
 
   private JsonContainedByComparisonSQL<F extends keyof Entity>(col: string, val: EntityComparisonField<Entity, F>): CmpSQLType {
-    const { paramName } = this
+    const { paramName: jsonContainedBy } = this
     return {
-      sql: `${col} <@ :${paramName}`,
-      params: { [paramName]: val }
+      sql: `${col} <@ :${jsonContainedBy}`,
+      params: { [jsonContainedBy]: val }
     }
   }
 
   private JsonHasKeyComparisonSQL<F extends keyof Entity>(col: string, val: EntityComparisonField<Entity, F>): CmpSQLType {
-    const { paramName } = this
+    const { paramName: jsonHasKey } = this
     return {
-      sql: `${col} ? :${paramName}`,
-      params: { [paramName]: val }
+      sql: `${col} ? :${jsonHasKey}`,
+      params: { [jsonHasKey]: val }
     }
   }
 
   private JsonHasAnyKeysComparisonSQL<F extends keyof Entity>(col: string, val: EntityComparisonField<Entity, F>): CmpSQLType {
-    const { paramName } = this
+    const { paramName: jsonHasAny } = this
     return {
-      sql: `${col} ?| :${paramName}`,
-      params: { [paramName]: val }
+      sql: `${col} ?| :${jsonHasAny}`,
+      params: { [jsonHasAny]: val }
     }
   }
 
   private JsonHasAllKeysComparisonSQL<F extends keyof Entity>(col: string, val: EntityComparisonField<Entity, F>): CmpSQLType {
-    const { paramName } = this
+    const { paramName: jsonHasAll } = this
     return {
-      sql: `${col} ?& :${paramName}`,
-      params: { [paramName]: val }
+      sql: `${col} ?& :${jsonHasAll}`,
+      params: { [jsonHasAll]: val }
     }
   }
 }
