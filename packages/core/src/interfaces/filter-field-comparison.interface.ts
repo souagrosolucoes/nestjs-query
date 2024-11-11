@@ -238,10 +238,12 @@ type BuiltInTypes = boolean | string | number | Date | RegExp | bigint | symbol 
  * * `boolean|null|undefined|never` - [[BooleanFieldComparisons]]
  * * all other types use [[CommonFieldComparisonType]]
  */
+type JsonObject = { [key: string]: JSON }
+
 // eslint-disable-next-line @typescript-eslint/ban-types
 type FilterFieldComparisonType<FieldType, IsKeys extends true | false> = FieldType extends string
   ? StringFieldComparisons
-  : FieldType extends JSON
+  : FieldType extends object
     ? JSONbFieldComparisons // eslint-disable-next-line @typescript-eslint/ban-types
     : FieldType extends boolean | Boolean
       ? BooleanFieldComparisons

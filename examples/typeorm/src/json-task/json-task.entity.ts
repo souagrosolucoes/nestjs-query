@@ -1,7 +1,4 @@
-import { Json } from 'sequelize/types/utils'
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
-
-import { JsonTypeDTO } from './dto/jsonType.dto'
 
 @Entity({ name: 'json_task' })
 export class JsonTaskEntity {
@@ -14,8 +11,8 @@ export class JsonTaskEntity {
   @Column({ nullable: true })
   description?: string
 
-  @Column({ type: 'jsonb', nullable: true })
-  display: JSON
+  @Column({ type: 'json', nullable: true })
+  display: Object
 
   @Column({ nullable: true })
   createdBy?: string

@@ -5,6 +5,8 @@ import { GraphQLJSONObject } from 'graphql-type-json'
 
 import { JsonTypeDTO } from './jsonType.dto'
 
+type JsonObject = { [key: string]: JSON }
+
 @ObjectType('JsonTask')
 @KeySet(['id'])
 @QueryOptions({ enableTotalCount: true })
@@ -17,7 +19,7 @@ export class JsonTaskDto {
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   @FilterableField(() => GraphQLJSONObject, { nullable: true })
-  display?: JSON
+  display?: object
 
   @FilterableField({ nullable: true })
   createdBy?: string
