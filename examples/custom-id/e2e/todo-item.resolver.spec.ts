@@ -228,7 +228,7 @@ describe('TodoItemResolver (custom-id - e2e)', () => {
             now: new Date().toISOString()
           },
           query: `query ($now: DateTime!) {
-            todoItems(filter: { created: { lt: $now } }) {
+            todoItems(filter: { created: { gt: $now } }) {
               ${pageInfoField}
               ${edgeNodes(todoItemFields)}
             }

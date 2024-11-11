@@ -417,8 +417,8 @@ describe('TagResolver (typeorm - e2e)', () => {
           .expect(200)
           .then(({ body }) => {
             const res: AggregateResponse<TodoItemDTO>[] = body.data.tagAggregate
-            expect(res).toHaveLength(1)
-            expect(res[0].sum).toEqual({ id: 15 })
+            expect(res).toHaveLength(2)
+            expect(res[1].sum).toEqual({ id: 14 })
           }))
 
       it(`should allow grouping on day`, () =>
