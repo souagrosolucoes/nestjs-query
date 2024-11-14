@@ -224,11 +224,13 @@ export class SQLComparisonBuilder<Entity> {
     return alias ? `${alias}.${field}` : `${field}`
   }
 
-  private operationForTypeDb = (filter: TypeDb) => {
+  private operationForTypeDb = (filter: TypeDb): CmpSQLType => {
     const driverType = this.repo?.manager.connection.options.type
+    const { sql, params } = filter[driverType]
+
     return {
-      sql: filter[driverType].sql,
-      params: filter[driverType].params
+      sql,
+      params
     }
   }
 

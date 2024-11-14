@@ -193,7 +193,7 @@ describe('RelationQueryBuilder', (): void => {
         manyToOneRelation: 'test-relation-id-1' as any,
         jsonType: {
           testEntityPk: 'test-entity-id-1',
-          dateType: `${new Date()}`,
+          dateType: new Date().toISOString(),
           boolType: true,
           numberType: 1,
           stringType: 'str',
@@ -209,7 +209,7 @@ describe('RelationQueryBuilder', (): void => {
         manyToOneRelation: 'test-relation-id-2' as any,
         jsonType: {
           testEntityPk: 'test-entity-id-2',
-          dateType: `${new Date()}`,
+          dateType: new Date().toISOString(),
           boolType: false,
           numberType: 2,
           stringType: 'str',

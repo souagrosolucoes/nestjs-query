@@ -8,7 +8,6 @@ import { TestSoftDeleteRelation } from './test-soft-delete.relation'
 
 export const TEST_ENTITIES: TestEntity[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => {
   const testEntityPk = `test-entity-${i}`
-
   return {
     testEntityPk,
     boolType: i % 2 === 0,
@@ -18,7 +17,7 @@ export const TEST_ENTITIES: TestEntity[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((
     jsonType: {
       testEntityPk,
       boolType: i % 2 === 0,
-      dateType: `${new Date(`2020-02-${i} 12:00`)}`,
+      dateType: new Date(`2020-02-${i} 12:00`).toISOString(),
       numberType: i,
       stringType: `foo${i}`
     }
