@@ -14,7 +14,14 @@ export const TEST_ENTITIES: TestEntity[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((
     boolType: i % 2 === 0,
     dateType: new Date(`2020-02-${i} 12:00`),
     numberType: i,
-    stringType: `foo${i}`
+    stringType: `foo${i}`,
+    jsonType: {
+      testEntityPk,
+      boolType: i % 2 === 0,
+      dateType: `${new Date(`2020-02-${i} 12:00`)}`,
+      numberType: i,
+      stringType: `foo${i}`
+    }
   }
 })
 

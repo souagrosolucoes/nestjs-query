@@ -7,6 +7,11 @@ import { randomString } from '../common'
  * @internal
  */
 type CmpSQLType = { sql: string; params: ObjectLiteral }
+type TypeDb = {
+  mysql: CmpSQLType
+  postgres: CmpSQLType
+  sqlite: CmpSQLType
+}
 
 /**
  * @internal
@@ -34,12 +39,7 @@ export class SQLComparisonBuilder<Entity> {
     like: 'LIKE',
     notlike: 'NOT LIKE',
     ilike: 'ILIKE',
-    notilike: 'NOT ILIKE',
-    contains: '@>',
-    containedBy: '<@',
-    hasKey: '?',
-    hasAnyKeys: '?|',
-    hasAllKeys: '?&'
+    notilike: 'NOT ILIKE'
   }
 
   constructor(
@@ -224,12 +224,24 @@ export class SQLComparisonBuilder<Entity> {
     return alias ? `${alias}.${field}` : `${field}`
   }
 
+  private operationForTypeDb = (filter: TypeDb) => {
+    const driverType = this.repo?.manager.connection.options.type
+    return {
+      sql: filter[driverType].sql,
+      params: filter[driverType].params
+    }
+  }
+
   private JsonContainsComparisonSQL<F extends keyof Entity>(col: string, val: EntityComparisonField<Entity, F>): CmpSQLType {
     const { paramName: jsonContains } = this
-    return {
-      sql: `${col} @> ${JSON.stringify(jsonContains)}:jsonb`,
-      params: { [jsonContains]: val }
+
+    const filter: TypeDb = {
+      mysql: { sql: ` JSON_CONTAINS(${col}, :${jsonContains}`, params: { [jsonContains]: `%${JSON.stringify(val)}%` } },
+      postgres: { sql: `${col} @> :${jsonContains}`, params: { [jsonContains]: val } },
+      sqlite: { sql: `${col} LIKE :${jsonContains}`, params: { [jsonContains]: `%${JSON.stringify(val)}%` } }
     }
+
+    return this.operationForTypeDb(filter)
   }
 
   private JsonContainedByComparisonSQL<F extends keyof Entity>(col: string, val: EntityComparisonField<Entity, F>): CmpSQLType {

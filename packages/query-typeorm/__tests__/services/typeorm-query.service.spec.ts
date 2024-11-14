@@ -66,6 +66,25 @@ describe('TypeOrmQueryService', (): void => {
   })
 
   describe('#query', () => {
+    it('JsonQuery - Sqlite', async () => {
+      const entity = TEST_ENTITIES[0]
+      const queryService = moduleRef.get(TestEntityService)
+      const queryResult = await queryService.query({
+        filter: {
+          jsonType: {
+            contains: {
+              testEntityPk: 'test-entity-1',
+              boolType: false,
+              dateType: 'Sat Feb 01 2020 12:00:00 GMT-0300 (Brasilia Standard Time)',
+              numberType: 1,
+              stringType: 'foo1'
+            }
+          }
+        }
+      })
+      expect(queryResult).toEqual([entity])
+    })
+
     it('call select and return the result', async () => {
       const queryService = moduleRef.get(TestEntityService)
       const queryResult = await queryService.query({ filter: { stringType: { eq: 'foo1' } } })
@@ -93,6 +112,7 @@ describe('TypeOrmQueryService', (): void => {
           const queryService = moduleRef.get(TestEntityService)
           const queryResult = await queryService.query({
             filter: {
+              //@ts-ignore
               oneTestRelation: {
                 relationsOfTestRelation: {
                   testRelationId: {
@@ -230,6 +250,7 @@ describe('TypeOrmQueryService', (): void => {
           const queryResult = await queryService.query({
             filter: {
               testRelations: {
+                //@ts-ignore
                 relationName: {
                   in: [TEST_RELATIONS[0].relationName, TEST_RELATIONS[1].relationName]
                 }
@@ -247,6 +268,7 @@ describe('TypeOrmQueryService', (): void => {
                 { testEntityPk: { eq: TEST_ENTITIES[1].testEntityPk } },
                 {
                   testRelations: {
+                    //@ts-ignore
                     testRelationPk: {
                       in: [`test-relations-${entity.testEntityPk}-1`, `test-relations-${entity.testEntityPk}-3`]
                     }
@@ -267,6 +289,7 @@ describe('TypeOrmQueryService', (): void => {
           const queryResult = await queryService.query({
             filter: {
               manyTestRelations: {
+                //@ts-ignore
                 relationName: {
                   in: [TEST_RELATIONS[1].relationName, TEST_RELATIONS[4].relationName]
                 }
@@ -281,6 +304,7 @@ describe('TypeOrmQueryService', (): void => {
           const queryResult = await queryService.query({
             filter: {
               manyToManyUniDirectional: {
+                //@ts-ignore
                 relationName: {
                   in: [TEST_RELATIONS[2].relationName, TEST_RELATIONS[5].relationName]
                 }
@@ -298,6 +322,7 @@ describe('TypeOrmQueryService', (): void => {
                 { testEntityPk: { eq: TEST_ENTITIES[2].testEntityPk } },
                 {
                   manyTestRelations: {
+                    //@ts-ignore
                     relationName: {
                       in: [TEST_RELATIONS[1].relationName, TEST_RELATIONS[4].relationName]
                     }
@@ -716,6 +741,7 @@ describe('TypeOrmQueryService', (): void => {
           const queryService = moduleRef.get(TestEntityService)
           const count = await queryService.count({
             testRelations: {
+              //@ts-ignore
               testEntityId: {
                 in: [relation.testEntityId]
               }
