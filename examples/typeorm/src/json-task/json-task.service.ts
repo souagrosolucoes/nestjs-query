@@ -1,6 +1,4 @@
 import { InjectQueryService, NoOpQueryService, Query, QueryOptions, QueryService } from '@souagrosolucoes/nestjs-query-core'
-import { TypeOrmQueryService } from '@souagrosolucoes/nestjs-query-typeorm'
-import { Repository } from 'typeorm'
 
 import { JsonTaskDto } from './dto/json-task.dto'
 import { JsonTaskEntity } from './json-task.entity'
@@ -11,12 +9,14 @@ export class JsonTaskService extends NoOpQueryService<JsonTaskDto, JsonTaskEntit
   }
 
   async query(query: Query<JsonTaskDto>, opts?: QueryOptions<JsonTaskDto>): Promise<JsonTaskDto[]> {
+    console.log(query)
     const response = await this.queryService.query({
-      filter: {
-        display: {
-          contains: { name: 'JsonTask-4' }
-        }
-      }
+      // filter: {
+      //   display: {
+      //     contains: { name: 'JsonTask-4' }
+      //   }
+      // }
+      filter: query.filter
     })
 
     return response

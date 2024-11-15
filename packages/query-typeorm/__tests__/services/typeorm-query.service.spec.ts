@@ -66,23 +66,58 @@ describe('TypeOrmQueryService', (): void => {
   })
 
   describe('#query', () => {
-    it('JsonQuery - Sqlite', async () => {
-      const entity = TEST_ENTITIES[0]
+    it('JsonQuery - SQqlite and', async () => {
+      const entity = TEST_ENTITIES[2]
       const queryService = moduleRef.get(TestEntityService)
       const queryResult = await queryService.query({
         filter: {
-          jsonType: {
-            contains: {
-              testEntityPk: 'test-entity-1',
-              boolType: false,
-              dateType: 'Sat Feb 01 2020 12:00:00 GMT-0300 (Brasilia Standard Time)',
-              numberType: 1,
-              stringType: 'foo1'
+          and: [
+            {
+              jsonType: {
+                contains: {
+                  testEntityPk: entity.testEntityPk
+                }
+              }
+            },
+            {
+              jsonType: {
+                contains: {
+                  dateType: entity.dateType
+                }
+              }
             }
-          }
+          ]
         }
       })
       expect(queryResult).toEqual([entity])
+    })
+
+    it('JsonQuery - SQqlite or', async () => {
+      const entity = TEST_ENTITIES[2]
+      const entity3 = TEST_ENTITIES[3]
+
+      const queryService = moduleRef.get(TestEntityService)
+      const queryResult = await queryService.query({
+        filter: {
+          or: [
+            {
+              jsonType: {
+                contains: {
+                  testEntityPk: entity.testEntityPk
+                }
+              }
+            },
+            {
+              jsonType: {
+                contains: {
+                  testEntityPk: entity3.testEntityPk
+                }
+              }
+            }
+          ]
+        }
+      })
+      expect(queryResult).toEqual([entity, entity3])
     })
 
     it('call select and return the result', async () => {

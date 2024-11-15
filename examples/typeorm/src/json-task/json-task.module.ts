@@ -3,9 +3,7 @@ import { NestjsQueryGraphQLModule } from '@souagrosolucoes/nestjs-query-graphql'
 import { NestjsQueryTypeOrmModule } from '@souagrosolucoes/nestjs-query-typeorm'
 
 import { AuthGuard } from '../auth.guard'
-import { JsonTaskCreateDTO } from './dto/json-create.dto'
 import { JsonTaskDto } from './dto/json-task.dto'
-import { JsonTaskUpdateDTO } from './dto/json-task-update.dto'
 import { JsonTaskEntity } from './json-task.entity'
 import { JsonTaskService } from './json-task.service'
 

@@ -240,7 +240,7 @@ export class SQLComparisonBuilder<Entity> {
     const filter: TypeDb = {
       mysql: { sql: ` JSON_CONTAINS(${col}, :${jsonContains}`, params: { [jsonContains]: `%${JSON.stringify(val)}%` } },
       postgres: { sql: `${col} @> :${jsonContains}`, params: { [jsonContains]: val } },
-      sqlite: { sql: `${col} LIKE :${jsonContains}`, params: { [jsonContains]: `%${JSON.stringify(val)}%` } }
+      sqlite: { sql: `${col} LIKE :${jsonContains}`, params: { [jsonContains]: `%${JSON.stringify(val).slice(1, -1)}%` } }
     }
 
     return this.operationForTypeDb(filter)

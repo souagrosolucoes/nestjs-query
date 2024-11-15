@@ -1,11 +1,6 @@
 import { ID, ObjectType } from '@nestjs/graphql'
 import { FilterableField, KeySet, QueryOptions } from '@souagrosolucoes/nestjs-query-graphql'
-import { GraphQLObjectType } from 'graphql'
 import { GraphQLJSONObject } from 'graphql-type-json'
-
-import { JsonTypeDTO } from './jsonType.dto'
-
-type JsonObject = { [key: string]: JSON }
 
 @ObjectType('JsonTask')
 @KeySet(['id'])

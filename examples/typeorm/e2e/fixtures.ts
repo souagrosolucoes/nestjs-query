@@ -42,7 +42,7 @@ export const refresh = async (connection: Connection): Promise<void> => {
     }
   ])
 
-  await jsonTaskRepo.save(todoItems.map((todo, i) => ({ title: todo.title, display: { name: `JsonTask-${i}` } })))
+  await jsonTaskRepo.save(todoItems.map((todo, i) => ({ title: todo.title, display: todo })))
 
   const subTasksEntities = todoItems.reduce(
     (subTasks, todo) => [

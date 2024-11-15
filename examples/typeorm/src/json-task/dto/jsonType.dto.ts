@@ -1,5 +1,5 @@
 import { Field, InputType, ObjectType } from '@nestjs/graphql'
-import { IsEmpty, IsNotEmpty, IsObject, IsOptional, IsString } from 'class-validator'
+import { IsOptional, IsString } from 'class-validator'
 
 @ObjectType()
 class CustomObject {

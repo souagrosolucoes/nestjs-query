@@ -39,17 +39,19 @@ describe('JsonTask (typeorm - e2e)', () => {
         operationName: null,
         variables: {},
         query: `{
-          jsonTasks{
+          jsonTasks( filter: {
+            display: {
+              contains: { title: "Create Nest App" }
+            } 
+          }) {
             ${edgeNodes(jsonTaskFields)}
           }
       }`
       })
       .expect(200)
-      .then((response) => {
-        expect(response.body.data.jsonTasks.edges[0].node).toEqual({
-          title: 'How to create item With Sub Tasks',
-          display: { name: 'JsonTask-4' }
-        })
+      .then(({ body }) => {
+        const title = body.data.jsonTasks.edges[0].node.title
+        expect(title).toBe('Create Nest App')
       }))
 
   afterAll(async () => {
