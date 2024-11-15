@@ -382,7 +382,7 @@ describe('TodoItemResolver (limitOffset - e2e)', () => {
               now: new Date().toISOString()
             },
             query: `query ($now: DateTime!) {
-            todoItemsCursor(filter: { created: { gt: $now } }) {
+            todoItemsCursor(filter: { created: { lt: $now } }) {
               ${cursorPageInfoField}
               ${edgeNodes(todoItemFields)}
             }
