@@ -1,4 +1,8 @@
  
+## [7.4.1](https://github.com/souagrosolucoes/nestjs-query/compare/v7.4.0...v7.4.1) (2025-02-01)
+
+
+
 # [8.0.0-alpha.0](https://github.com/souagrosolucoes/nestjs-query/compare/v7.4.0...v8.0.0-alpha.0) (2025-02-01)
 
 
