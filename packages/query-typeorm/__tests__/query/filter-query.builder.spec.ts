@@ -328,6 +328,7 @@ describe('FilterQueryBuilder', (): void => {
           expectSelectSQLSnapshot(
             {
               paging: { limit: 10, offset: 3 },
+            //@ts-ignore
               filter: { oneTestRelation: { manyTestEntities: { testEntityPk: { eq: 'test' } } } }
             },
             instance(mockWhereBuilder)
@@ -343,6 +344,7 @@ describe('FilterQueryBuilder', (): void => {
           expectSelectSQLSnapshot(
             {
               paging: { limit: 10, offset: 3 },
+            //@ts-ignore
               filter: { testRelations: { testRelationPk: { eq: 'test' } } }
             },
             instance(mockWhereBuilder)
