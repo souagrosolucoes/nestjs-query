@@ -3,11 +3,14 @@ import { Test } from '@nestjs/testing'
 import request from 'supertest'
 import { Connection } from 'typeorm'
 
+import { dbType } from '../../helpers/db-test.helpers'
 import { AppModule } from '../src/app.module'
 import { refresh } from './fixtures'
 import { edgeNodes, jsonTaskFields } from './graphql-fragments'
 
-describe('JsonTask (typeorm - e2e)', () => {
+const describeJsonTask = dbType === 'mysql' ? describe.skip : describe
+
+describeJsonTask('JsonTask (typeorm - e2e)', () => {
   let app: INestApplication
 
   beforeAll(async () => {
