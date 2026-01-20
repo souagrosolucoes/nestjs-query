@@ -53,9 +53,11 @@ $ yarn nx run-many --target=build --all
 # To run all tests
 $ yarn nx run-many --target=test --all
 
+
 # To run the E2E tests
 $ yarn docker up -d
 $ yarn nx e2e examples
+$ yarn nx e2e 
 
 # To build one package
 $ yarn nx build query-graphql
@@ -64,3 +66,4 @@ $ yarn nx build query-graphql
 ## Collaboration
 
 If you have questions or [issues](https://github.com/TriPSs/nestjs-query/issues), please [open an issue](https://github.com/TriPSs/nestjs-query/issues/new)!
+
